@@ -5,21 +5,27 @@ import se.kth.processSale.model.ChangeDTO;
 import se.kth.processSale.model.SaleDTO;
 import se.kth.processSale.util.Node;
 
-import java.util.Date;
 
+/**
+ * Class responsible for creating a receipt from a sale and sending it to printer
+ */
 public class Receipt {
     private String receipt;
     private Printer printer;
 
-    public Receipt(SaleInformationDTO saleInformationDTO){
-        //Date date = new Date();
+    /**
+     * Create and store receipt from the given saleInformation
+     * @param saleInformationDTO Contains information about a completed sale
+     * @param printer reference to printer system
+     */
+    public Receipt(SaleInformationDTO saleInformationDTO, Printer printer){
+        this.printer =printer;
         double totalWithoutTaxes = saleInformationDTO.getTaxAndTotal().getTotalWithoutTaxes();
         double totalWithTaxes = saleInformationDTO.getTaxAndTotal().getTotalWithTaxApplied();
         ChangeDTO change = saleInformationDTO.getReturnedChange();
         SaleDTO sale = saleInformationDTO.getFinishedSale();
         Node<ItemDTO> itemList = sale.getItemList();
         receipt= "Receipt\n";
-        //receipt+= date.toString()+"\n";
         receipt+="Items: \n";
         if(itemList != null){
             receipt+=itemList.toString();
@@ -29,12 +35,15 @@ public class Receipt {
         receipt+="Total with Tax: "+totalWithTaxes+"\n";
         receipt+="Amount payed: "+change.getAmountPayed()+"\n";
         receipt+="Change returned: "+change.getChange()+" kr\n";
-        printer = new Printer();
 
 
 
 
     }
+
+    /**
+     * Send the receipt to the printer
+     */
     public void sendReceipt(){
         this.printer.printReceipt(new ReceiptDTO(this.receipt));
     }

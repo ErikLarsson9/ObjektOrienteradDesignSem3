@@ -20,7 +20,8 @@ public class ControllerTest {
         AccountingSystem accountingSystem = new AccountingSystem();
         InventorySystem invSystem = new InventorySystem();
         productCatalogue = new ProductCatalogue();
-        controller = new Controller(accountingSystem, invSystem, productCatalogue);
+        Printer printer = new Printer();
+        controller = new Controller(accountingSystem, invSystem, productCatalogue, printer);
 
     }
 

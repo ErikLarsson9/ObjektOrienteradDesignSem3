@@ -28,7 +28,6 @@ public class Sale {
      * @return  Information about the sale stored in a {@link SaleDTO} object.   */
     public SaleDTO saleStatus(){
         return new SaleDTO(this.runningTotal,Node.copyList(itemList));
-        //return new SaleDTO(this.runningTotal, itemList);
     }
 
 

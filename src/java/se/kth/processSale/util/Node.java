@@ -1,17 +1,13 @@
 package se.kth.processSale.util;
 
-import static sun.misc.Version.print;
-
+/** Utility class which implements a list data structure  */
 public class Node<T> {
     public T item;
     public Node next = null;
 
-//    public Node(Node<T> node){
-//        this.item = node.item;
-//        this.next = node.next;
-//
-//
-//    }
+    /** Copy a list creating a new copy of it.
+     * @param list the list that is to be copied
+     * @return  Reference to the first <Code>Node<T></Code> in the copy */
     public static <E> Node<E> copyList(Node<E> list){
         if(list == null){
             return null;
@@ -29,6 +25,10 @@ public class Node<T> {
        }
        return firstNodeInNewList;
     };
+
+    /**
+     *  @return The length of the list
+     */
     public int getLength(){
         int length=1;
         Node<T> nextNode =  new Node<T>();
@@ -40,6 +40,10 @@ public class Node<T> {
 
         return length;
     }
+
+    /**
+     * Prints out the list
+     */
     public void printList(){
         Node listTraverse = this.next;
         System.out.println(this.item);
@@ -49,6 +53,9 @@ public class Node<T> {
         }
 
     }
+    /** Overloads the Object toString method
+     * @return A String containing information about
+     * the objects in the list */
     public String toString(){
         Node listTraverse = this.next;
         String listAsString = this.item.toString()+"\n";

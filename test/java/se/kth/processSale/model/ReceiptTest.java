@@ -3,10 +3,7 @@ package se.kth.processSale.model;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import se.kth.processSale.integration.ItemDTO;
-import se.kth.processSale.integration.Receipt;
-import se.kth.processSale.integration.ReceiptDTO;
-import se.kth.processSale.integration.SaleInformationDTO;
+import se.kth.processSale.integration.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -21,8 +18,9 @@ public class ReceiptTest {
     Double payedAmount;
     ItemDTO firstItem;
     ItemDTO secondItem;
-
     Receipt receipt;
+    Printer printer;
+
     @Before
     public void setUp() throws Exception {
         sale = new Sale();
@@ -34,7 +32,8 @@ public class ReceiptTest {
         payedAmount = new Double(200);
         changeCalc = new ChangeCalculator(payedAmount, taxTotalCalc.getTotalWithTax());
         saleInformation = new SaleInformationDTO(sale.saleStatus(), taxTotalCalc.getTotalWithTax(), changeCalc.getChange());
-        receipt = new Receipt(saleInformation);
+        printer = new Printer();
+        receipt = new Receipt(saleInformation, printer);
     }
 
     @After
@@ -46,6 +45,7 @@ public class ReceiptTest {
         payedAmount = null;
         firstItem = null;
         secondItem = null;
+        printer = null;
 
     }
     @Test

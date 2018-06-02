@@ -14,15 +14,26 @@ public class SaleDTO {
 
     }
 
+    /**
+     * returns a list of all the items in the sale
+     * @return the list of items
+     */
     public Node<ItemDTO> getItemList() {
         return itemList;
     }
 
+    /**
+     * Returns the running total of the sale
+     * @return sale running total
+     */
     public double getRunningTotal() {
         return runningTotal;
     }
 
-
+    /**
+     * Returns the last item added to the sale
+     * @return the last item added
+     */
     public ItemDTO getLatestItemAdded(){
 
         return itemList.item;
