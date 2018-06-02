@@ -1,7 +1,5 @@
 package se.kth.processSale.integration;
 
-import se.kth.processSale.model.Receipt;
-
 public class Printer {
 
 
@@ -9,7 +7,9 @@ public class Printer {
 
     }
 
-    public void printReceipt(Receipt receipt){
+    public void printReceipt(ReceiptDTO receipt){
+
+        System.out.print(receipt.getReceipt());
 
     }
 }

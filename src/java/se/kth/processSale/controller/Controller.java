@@ -8,16 +8,16 @@ public class Controller {
     private InventorySystem invSystem;
     private ProductCatalogue productCatalogue;
     private ChangeCalculator changeCalc;
-    TotalWithTax totalWithTax;
-    private Printer printer;
+    CalculateTotalWithTax totalWithTax;
+    //private Printer printer;
     private Sale currentSale;
     private Receipt receipt;
 
-    public Controller(AccountingSystem accountingSystem, InventorySystem invSystem, Printer printer, ProductCatalogue productCatalogue ){
+    public Controller(AccountingSystem accountingSystem, InventorySystem invSystem, ProductCatalogue productCatalogue ){
         this.accountingSystem = accountingSystem;
         this.invSystem = invSystem;
         this.productCatalogue = productCatalogue;
-        this.printer = printer;
+        //this.printer = printer;
 
     }
 
@@ -25,11 +25,10 @@ public class Controller {
         this.currentSale = new Sale();
 
     }
-    //Should instead make class in model layer that calls productCatalogue
     public SaleDTO searchItem(String identifier){
         ItemDTO item = productCatalogue.searchItem(identifier);
         if(item == null){
-            return null;
+            return currentSale.saleStatus();
         }
         else {
             currentSale.addItem(item);
@@ -39,7 +38,9 @@ public class Controller {
     }
 
     public TaxTotalDTO allItemsRegistered(){
-        totalWithTax = new TotalWithTax(currentSale.saleStatus());
+        totalWithTax = new CalculateTotalWithTax(currentSale.saleStatus());
+        //SaleDTO sale = currentSale.saleStatus();
+        //sale.getItemList().copyList().printList();
         return  totalWithTax.getTotalWithTax();
 
     }
@@ -47,11 +48,11 @@ public class Controller {
     public ChangeDTO enterPayment( double payedAmount){
         changeCalc = new ChangeCalculator(payedAmount, totalWithTax.getTotalWithTax());
         ChangeDTO change = changeCalc.getChange();
-        SaleInformation saleInformation = new SaleInformation(currentSale.saleStatus(), totalWithTax.getTotalWithTax(), change);
-        invSystem.sendSaleInformation(saleInformation);
-        accountingSystem.sendSaleInformation(saleInformation);
-        receipt = new Receipt(saleInformation);
-        printer.printReceipt(receipt);
+        SaleInformationDTO saleInformationDTO = new SaleInformationDTO(currentSale.saleStatus(), totalWithTax.getTotalWithTax(), change);
+        invSystem.sendSaleInformation(saleInformationDTO);
+        accountingSystem.sendSaleInformation(saleInformationDTO);
+        receipt = new Receipt(saleInformationDTO);
+        receipt.sendReceipt();
         return change;
 
 

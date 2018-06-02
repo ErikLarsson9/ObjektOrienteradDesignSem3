@@ -1,11 +1,15 @@
-package se.kth.processSale.model;
+package se.kth.processSale.integration;
 
-public class SaleInformation {
+import se.kth.processSale.model.ChangeDTO;
+import se.kth.processSale.model.SaleDTO;
+import se.kth.processSale.model.TaxTotalDTO;
+
+public class SaleInformationDTO {
     private SaleDTO finishedSale;
     private TaxTotalDTO taxAndTotal;
     private ChangeDTO returnedChange;
 
-    public SaleInformation(SaleDTO finishedSale, TaxTotalDTO taxAndTotal, ChangeDTO returnedChange){
+    public SaleInformationDTO(SaleDTO finishedSale, TaxTotalDTO taxAndTotal, ChangeDTO returnedChange){
         this.finishedSale = finishedSale;
         this.taxAndTotal = taxAndTotal;
         this.returnedChange = returnedChange;

@@ -1,20 +1,22 @@
 package se.kth.processSale.model;
-
+/** Represents the total from a sale and the same total after taxes have been applied  */
 public class TaxTotalDTO {
-    private double total;
-    private double tax;
+    private final double totalWithoutTaxes;
+    private final double totalWithTaxApplied;
 
-
-    public  TaxTotalDTO(double total, double tax){
-        this.total = total;
-        this.tax = tax;
+    /** Create an instance to represent the total before and after taxes have been applied
+     * @param total The total without taxes applied
+     * @param totalWithTaxApplied The total after the taxes have been applied */
+    public  TaxTotalDTO(double total, double totalWithTaxApplied){
+        this.totalWithoutTaxes = total;
+        this.totalWithTaxApplied = totalWithTaxApplied;
     }
-
-    public double getTotal() {
-        return total;
+    /** @return the total without taxes applied  */
+    public double getTotalWithoutTaxes() {
+        return totalWithoutTaxes;
     }
-
-    public double getTax() {
-        return tax;
+    /** @return the total with taxes applied */
+    public double getTotalWithTaxApplied() {
+        return totalWithTaxApplied;
     }
 }

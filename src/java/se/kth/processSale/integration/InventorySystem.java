@@ -1,7 +1,6 @@
 package se.kth.processSale.integration;
 
 import se.kth.processSale.model.SaleDTO;
-import se.kth.processSale.model.SaleInformation;
 import se.kth.processSale.util.Node;
 
 public class InventorySystem {
@@ -10,8 +9,8 @@ public class InventorySystem {
     public InventorySystem(){
 
     }
-    public void sendSaleInformation(SaleInformation saleInformation){
-        SaleDTO finishedSale = saleInformation.getFinishedSale();
+    public void sendSaleInformation(SaleInformationDTO saleInformationDTO){
+        SaleDTO finishedSale = saleInformationDTO.getFinishedSale();
         Node<ItemDTO> itemsSold = finishedSale.getItemList();
         sendListOfItemsSold(itemsSold);
 

@@ -1,9 +1,9 @@
 package se.kth.processSale.integration;
 
 public class ItemDTO {
-    String identifier;
-    double price;
-    String itemDescription;
+    private final String identifier;
+    private final double price;
+    private final String itemDescription;
 
     public ItemDTO(String identifier, double price, String itemDescription){
         this.identifier = identifier;
@@ -22,6 +22,14 @@ public class ItemDTO {
     public String getItemDescription() {
         return itemDescription;
     }
+
+    public String toString(){
+        return  "Item identifier: " + this.identifier + ", "+
+        "Description: " + this.itemDescription + ", "+
+                "Price: " + this.price + " ";
+    }
+
+
 
 
 }

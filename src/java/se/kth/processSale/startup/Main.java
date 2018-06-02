@@ -16,8 +16,8 @@ public class Main {
         AccountingSystem accountingSystem = new AccountingSystem();
         InventorySystem invSystem = new InventorySystem();
         ProductCatalogue productCatalogue = new ProductCatalogue();
-        Printer printer = new Printer();
-        Controller controller = new Controller(accountingSystem, invSystem, printer, productCatalogue);
+        //Printer printer = new Printer();
+        Controller controller = new Controller(accountingSystem, invSystem, productCatalogue);
         View view = new View(controller);
         view.sampleExecution();
 

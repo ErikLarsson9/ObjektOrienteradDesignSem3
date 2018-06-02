@@ -4,6 +4,8 @@ import se.kth.processSale.controller.Controller;
 import se.kth.processSale.integration.ItemDTO;
 import se.kth.processSale.model.*;
 
+import java.util.Date;
+
 public class View {
     private Controller controller;
     private final String CURRENCY = "kr";
@@ -43,8 +45,8 @@ public class View {
     }
 
     private void showTotalWithTax(TaxTotalDTO taxAndTotal){
-        System.out.println("Running total: " + taxAndTotal.getTotal() + " "+ CURRENCY);
-        System.out.println("Running total with tax: " + taxAndTotal.getTax() + " "+ CURRENCY);
+        System.out.println("Running total: " + taxAndTotal.getTotalWithoutTaxes() + " "+ CURRENCY);
+        System.out.println("Running total with tax: " + taxAndTotal.getTotalWithTaxApplied() + " "+ CURRENCY);
 
     }
 
