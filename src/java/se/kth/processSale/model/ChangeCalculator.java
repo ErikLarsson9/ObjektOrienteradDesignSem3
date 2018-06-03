@@ -1,4 +1,7 @@
 package se.kth.processSale.model;
+
+
+
 /** This class is responsible for calculating the change and storing it */
 public class ChangeCalculator {
     private ChangeDTO change;
@@ -18,4 +21,6 @@ public class ChangeCalculator {
     public ChangeDTO getChange() {
         return this.change;
     }
-}
+
+    }
+

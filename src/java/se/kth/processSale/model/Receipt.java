@@ -1,8 +1,8 @@
-package se.kth.processSale.integration;
-
-
-import se.kth.processSale.model.ChangeDTO;
-import se.kth.processSale.model.SaleDTO;
+package se.kth.processSale.model;
+import se.kth.processSale.integration.ItemDTO;
+import se.kth.processSale.integration.Printer;
+import se.kth.processSale.integration.ReceiptDTO;
+import se.kth.processSale.integration.SaleInformationDTO;
 import se.kth.processSale.util.Node;
 
 
@@ -49,3 +49,4 @@ public class Receipt {
     }
 
 }
+

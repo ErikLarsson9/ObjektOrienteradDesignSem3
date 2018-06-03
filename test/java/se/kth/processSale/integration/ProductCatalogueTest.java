@@ -23,11 +23,10 @@ public class ProductCatalogueTest {
     @Test
     public void searchItemNotInCatalogue() throws Exception {
         String searchString = null;
-        //String searchString = "abc1000";
         ItemDTO foundItem = productCatalogue.searchItem(searchString);
         boolean result = foundItem == null;
         boolean expectedResult = true;
-        assertEquals("Inncorrect identifier returned item in catalogue", result, expectedResult);
+        assertEquals("Incorrect identifier returned item in catalogue", result, expectedResult);
 
     }
     @Test

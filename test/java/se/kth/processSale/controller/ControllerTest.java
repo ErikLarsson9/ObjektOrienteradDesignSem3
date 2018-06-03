@@ -46,14 +46,7 @@ public class ControllerTest {
 
     }
 
-    //@Test
-//    public void searchingForNonExistingItem() throws Exception {
-//        String itemIdentifier = "abc2000";
-//        SaleDTO sale = controller.searchItem(itemIdentifier);
-//        boolean result = sale.getLatestItemAdded().getIdentifier().equals(itemIdentifier);
-//        assertTrue("Searching for an existing item didn't add it to the returned SaleDTO", result);
-//
-//    }
+
 
 
     @Test

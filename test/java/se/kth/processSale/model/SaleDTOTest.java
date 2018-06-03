@@ -8,19 +8,19 @@ import static org.junit.Assert.assertEquals;
 /** Represents information about a sale  */
 public class SaleDTOTest {
     Sale newSale;
-    //SaleDTO newSaleDTO;
+
 
     @Before
     public void  setUp(){
         newSale = new Sale();
-        //newSaleDTO =  newSale.saleStatus();
+
 
     }
 
     @After
     public void tearDown(){
         newSale = null;
-        //newSaleDTO = null;
+
 
     }
 

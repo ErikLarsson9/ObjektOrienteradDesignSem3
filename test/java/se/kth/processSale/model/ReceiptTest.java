@@ -18,7 +18,7 @@ public class ReceiptTest {
     Double payedAmount;
     ItemDTO firstItem;
     ItemDTO secondItem;
-    Receipt receipt;
+
     Printer printer;
 
     @Before
@@ -33,12 +33,11 @@ public class ReceiptTest {
         changeCalc = new ChangeCalculator(payedAmount, taxTotalCalc.getTotalWithTax());
         saleInformation = new SaleInformationDTO(sale.saleStatus(), taxTotalCalc.getTotalWithTax(), changeCalc.getChange());
         printer = new Printer();
-        receipt = new Receipt(saleInformation, printer);
+
     }
 
     @After
     public void tearDown() throws Exception {
-        receipt = null;
         changeCalc = null;
         taxTotalCalc = null;
         saleInformation = null;
@@ -50,13 +49,14 @@ public class ReceiptTest {
     }
     @Test
     public void receiptContains(){
+
+        Receipt receipt = new Receipt(saleInformation, printer);
         ByteArrayOutputStream capturedPrintedReceipt = new ByteArrayOutputStream();
         PrintStream newOut = new PrintStream(capturedPrintedReceipt);
         PrintStream oldOut = System.out;
         System.setOut(newOut);
         receipt.sendReceipt();
         System.setOut(oldOut);
-        receipt.sendReceipt();
         String printedReceipt = capturedPrintedReceipt.toString();
         TaxTotalDTO taxTotal = taxTotalCalc.getTotalWithTax();
         ChangeDTO change = changeCalc.getChange();
@@ -69,7 +69,7 @@ public class ReceiptTest {
        "Total with Tax: "+totalWithTaxes+"\n"
         +"Amount payed: "+change.getAmountPayed()+"\n"
         +"Change returned: "+change.getChange()+" kr\n";
-        assertTrue("Recipe not printed correctly ", printedReceipt.matches(expectedResult));
+
         assertTrue("Wrong firstItem ", printedReceipt.contains(firstItem.toString()));
         assertTrue("Wrong secondItem ", printedReceipt.contains(secondItem.toString()));
         assertTrue("Wrong Total ", printedReceipt.contains(
@@ -82,6 +82,7 @@ public class ReceiptTest {
                 Double.toString(change.getAmountPayed())));
         assertTrue("Wrong change returned ", printedReceipt.contains(
                 Double.toString(change.getChange())));
+        assertTrue("Receipt not printed correctly ", printedReceipt.matches(expectedResult));
 
 
 
